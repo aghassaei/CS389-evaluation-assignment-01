@@ -1,14 +1,6 @@
-// Implementation
+// Implementation, porting update_locations.py to C
 
-// //!/usr/bin/env python3
-//  have a main 
-// # make sure that all vecs are the same, make a vector type
-// # void function gives pointer to an array, other thing fills it
-// # details of experiments:
-
-// import random, sys, timeit, psutil
-// coord_t 
-// vector_t = 
+// to import random, sys, timeit, psutil: should have includes instead
 
 
 ///////////////
@@ -18,37 +10,40 @@ def generate_random_list(size, bound):
 
 //###############
 // Update position by velocity, one time-step
-void update_coords(xs, ys, zs, vx, vy, vz):
+void update_coords(coord_t xs,coord_t ys,coord_t zs,coord_t vx,coord_t vy,coord_t vz):
     for i in range(len(xs)):
         xs[i] = xs[i] + vx[i]
         ys[i] = ys[i] + vy[i]
         zs[i] = zs[i] + vz[i]
+// using a for loop and void function 
 
 int main(int argv[1], int argv[2]){
+vector_t xs[size];
+vector_t ys[size];
+vector_t zs[size];
+vector_t vx[size];
+vector_t vy[size];
+vector_t vz[size];
 if (len(sys.argv) != 3):
     print("Required arguments: vector_length(N) and iterations_num(M)")
     sys.exit(-1)
 int size = int(sys.argv[1])
 int iters = int(sys.argv[2])
-random.seed(size)
-xs = generate_random_list(size, 1000.)
-ys = generate_random_list(size, 1000.)
-zs = generate_random_list(size, 1000.)
-vx = generate_random_list(size, 1.)
-vy = generate_random_list(size, 1.)
-vz = generate_random_list(size, 1.)
 
-vector_t xs[size];
+random.seed(size)
+// xs = generate_random_list(size, 1000.)
+// ys = generate_random_list(size, 1000.)
+// zs = generate_random_list(size, 1000.)
+// vx = generate_random_list(size, 1.)
+// vy = generate_random_list(size, 1.)
+// vz = generate_random_list(size, 1.)
+
+
 generate_random_list(&xs, size);
-vector_t ys[size];
 generate_random_list(&ys, size);
-vector_t zs[size];
 generate_random_list(&zs, size);
-vector_t vx[size];
 generate_random_list(&vx, size);
-vector_t vy[size];
 generate_random_list(&vy, size);
-vector_t vz[size];
 generate_random_list(&vz, size);
 
 t = timeit.timeit(stmt = "update_coords(xs, ys, zs, vx, vy, vz)",
